@@ -56,3 +56,15 @@ else:
     prediction = poly_model(market_size)
 
 st.success(f"{model_type} Forecast: ${prediction:.2f}M")
+sizes = np.arange(1, 11)
+linear_preds = linear_model.predict(sizes.reshape(-1, 1))
+poly_preds = poly_model(sizes)
+
+fig, ax = plt.subplots()
+ax.plot(sizes, linear_preds, label="Linear Model", linestyle="--", marker="o")
+ax.plot(sizes, poly_preds, label="Polynomial Model", linestyle=":", marker="s")
+ax.set_xlabel("Market Size")
+ax.set_ylabel("Revenue Forecast")
+ax.set_title("Forecast Model Comparison")
+ax.legend()
+st.pyplot(fig)
