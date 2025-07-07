@@ -35,3 +35,24 @@ ax.set_title("Market Size vs Revenue Forecast")
 
 # Show plot
 st.pyplot(fig)
+st.header("📊 Forecast Model Comparison")
+
+model_type = st.selectbox("Select Forecast Type", ["Linear", "Polynomial"])
+market_size = st.slider("Market Size", 0, 10, 5)
+
+# Define training data
+X = np.array([[1], [2], [3], [4], [5]])
+y = np.array([5, 7, 9, 11, 13])
+
+# Create models
+linear_model = LinearRegression().fit(X, y)
+poly_features = np.polyfit(X.flatten(), y, deg=2)
+poly_model = np.poly1d(poly_features)
+
+# Generate predictions
+if model_type == "Linear":
+    prediction = linear_model.predict(np.array([[market_size]]))[0]
+else:
+    prediction = poly_model(market_size)
+
+st.success(f"{model_type} Forecast: ${prediction:.2f}M")
