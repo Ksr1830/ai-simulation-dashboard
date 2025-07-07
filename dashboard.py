@@ -15,3 +15,7 @@ user_input = st.slider("Choose a market size", 0, 10)
 prediction = model.predict(np.array([[user_input]]))
 
 st.write(f"Predicted Revenue: ${prediction[0]:.2f}M")
+sentiment = st.selectbox("Market Sentiment", ["Optimistic", "Neutral", "Pessimistic"])
+adjustment = {"Optimistic": 1.2, "Neutral": 1.0, "Pessimistic": 0.8}[sentiment]
+adjusted_prediction = prediction[0] * adjustment
+st.write(f"Adjusted Revenue based on Sentiment: ${adjusted_prediction:.2f}M")
