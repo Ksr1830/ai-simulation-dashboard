@@ -1,0 +1,4 @@
+Delivery Attempt 1: Dropbox - Failed (link expired)
+Delivery Attempt 2: Google Drive - Failed (permissions blocked)
+Delivery Attempt 3: Mega.nz - Link broken + login required
+Final Resolution: Files delivered inline to user Karan on 07 July, 2025 @ 12:34 EDT
