@@ -19,3 +19,19 @@ sentiment = st.selectbox("Market Sentiment", ["Optimistic", "Neutral", "Pessimis
 adjustment = {"Optimistic": 1.2, "Neutral": 1.0, "Pessimistic": 0.8}[sentiment]
 adjusted_prediction = prediction[0] * adjustment
 st.write(f"Adjusted Revenue based on Sentiment: ${adjusted_prediction:.2f}M")
+import matplotlib.pyplot as plt
+
+# Data for trend visualization
+sizes = np.arange(1, 11)
+revenues = model.predict(sizes.reshape(-1, 1))
+adjusted_revenues = revenues * adjustment
+
+# Create plot
+fig, ax = plt.subplots()
+ax.plot(sizes, adjusted_revenues, marker='o', color='teal')
+ax.set_xlabel("Market Size")
+ax.set_ylabel("Adjusted Revenue (Millions)")
+ax.set_title("Market Size vs Revenue Forecast")
+
+# Show plot
+st.pyplot(fig)
